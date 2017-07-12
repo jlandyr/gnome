@@ -13,25 +13,6 @@ class ParseData: NSObject {
     public let urlRequest:URL! = URL(string: "https://raw.githubusercontent.com/rrafols/mobile_test/master/data.json")
     var gnomesData :[Gnome] = []
     
-    public class func loadDataFromURL(url: URL, completion: @escaping (_ data: Data?, _ error: Error?) -> Void) {
-        let loadDataTask = URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if let _ = error {
-                completion(nil, error)
-            } else if let response = response as? HTTPURLResponse {
-                if response.statusCode != 200 {
-                    let statusError = NSError(domain: "githubusercontent.com",
-                                              code: response.statusCode,
-                                              userInfo: [NSLocalizedDescriptionKey: "HTTP status code has unexpected value."])
-                    completion(nil, statusError)
-                } else {
-                    completion(data, nil)
-                }
-            }
-        }
-        loadDataTask.resume()
-    }
-    
-    
     public class func parseAllData(anyObj: [AnyObject]) -> [Gnome]{
         var arrayGnomes: [Gnome] = []
         var gnome = Gnome()
@@ -78,8 +59,6 @@ class ParseData: NSObject {
                 profession.append(removeWhiteSpaceLeftRight(myString:list[0].proffesions[0]))
             }
             
-            //array.sorted { $0.localizedCaseInsensitiveCompare($1) == ComparisonResult.orderedAscending }
-            
             for obj in list{
                 for obj2 in obj.proffesions
                 {
@@ -111,7 +90,6 @@ class ParseData: NSObject {
     }
     
     func removeWhiteSpaceLeftRight(myString:String)-> String{
-//        let myString = "  \t\t  Let's trim all the whitespace  \n \t  \n  "
         let trimmedString = myString.trimmingCharacters(in: .whitespacesAndNewlines)
         return trimmedString
     }

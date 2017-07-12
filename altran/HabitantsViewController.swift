@@ -39,19 +39,29 @@ class HabitantsViewController :UIViewController {
         self.cache = NSCache()
         
         if gnomesData.count <= 0 {
+            
             let task2 = session.dataTask(with: parseData.urlRequest) { (data, response, error) in
-                // this is where the completion handler code goes
-                if let response = response {
-                    print(response)
-                }
-                if let error = error {
-                    print(error)
-                }
-                if data != nil {
-                    self.loadData(data: data!)
-                }else {
-                    print("Error: did not receive data")
+                UIApplication.shared.isNetworkActivityIndicatorVisible = true
+                if error != nil
+                {
+                    print("error=\(String(describing: error))")
                     return
+                }else
+                {
+                    do{
+                        let dic = try JSONSerialization.jsonObject(with: data!, options: .mutableLeaves) as AnyObject
+                        
+                        self.tableData = dic.value(forKey : "Brastlewark") as? [AnyObject]
+                        self.gnomesData = ParseData.parseAllData(anyObj: self.tableData)
+                        
+                        DispatchQueue.main.async(execute: { () -> Void in
+                            self.collectionHabitants.reloadData()
+                            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                        })
+                    }
+                    catch{
+                        print(error.localizedDescription)
+                    }
                 }
                 
             }
@@ -64,6 +74,14 @@ class HabitantsViewController :UIViewController {
             })
         }
         
+        DispatchQueue.global(qos: .background).async {
+            print("This is run on the background queue")
+            
+            DispatchQueue.main.async {
+                print("This is run on the main queue, after the previous code in outer block")
+            }
+        }
+        
         
     }
 
@@ -72,34 +90,6 @@ class HabitantsViewController :UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    //MARK: - parse data
-    func loadData(data:Data){
-        do{
-            let dic = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves) as AnyObject
-            
-            self.tableData = dic.value(forKey : "Brastlewark") as? [AnyObject]
-            gnomesData = ParseData.parseAllData(anyObj: self.tableData)
-            
-            DispatchQueue.main.async(execute: { () -> Void in
-                self.collectionHabitants.reloadData()
-            })
-        }
-        catch{
-            print("something went wrong, try again")
-        }
-        
-    }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 //MARK: - UICollectionView
 extension HabitantsViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout
@@ -118,27 +108,25 @@ extension HabitantsViewController: UICollectionViewDelegate, UICollectionViewDat
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cells", for: indexPath) as! HabitantsCollectionViewCell
         var gnome = Gnome()
         if self.searchActive == true {
-            
             gnome = arrayFiltered[indexPath.row]
-            
         }else{
             gnome = gnomesData[indexPath.row]
-            
         }
             cell.labelName.text = gnome.name
             cell.labelAge.text = String("🎂\n") + String(gnome.age)
             cell.labelHeight.text = String("📐\n") + String(gnome.height)
             cell.labelWeight.text = String("⚖️\n") + String(gnome.weight)
-            cell.imageThumbnail.image = nil
+            cell.imageThumbnail.image = UIImage(named: "placeholder")
             if gnome.hair_color == "Pink" {
                 cell.labelGender.text = "♀"
             }else{
                 cell.labelGender.text = "♂"
             }
-            if (self.cache.object(forKey: (indexPath as NSIndexPath).row as AnyObject) != nil){
+        
+            if (self.cache.object(forKey: gnome.thumbnail as AnyObject) != nil){
                 // Use cache
                 print("Cached image used, no need to download it")
-                cell.imageThumbnail?.image = self.cache.object(forKey: (indexPath as NSIndexPath).row as AnyObject) as? UIImage
+                cell.imageThumbnail?.image = self.cache.object(forKey: gnome.thumbnail as AnyObject) as? UIImage
             }else{
                 print("downloading image...")
                 cell.activityIndicator.isHidden = false
@@ -150,17 +138,15 @@ extension HabitantsViewController: UICollectionViewDelegate, UICollectionViewDat
                             
                             let img:UIImage! = UIImage(data: data)
                             cell.imageThumbnail.image = img
-                            self.cache.setObject(img, forKey: (indexPath as NSIndexPath).row as AnyObject)
+                            self.cache.setObject(img, forKey: gnome.thumbnail as AnyObject)
+                            
                             cell.activityIndicator.isHidden = true
                             
                         })
                     }
                 })
                 task.resume()
-            }
-        
-        
-        
+            } 
         return cell
     }
     
@@ -174,7 +160,6 @@ extension HabitantsViewController: UICollectionViewDelegate, UICollectionViewDat
             nextViewController.selectedGnome = self.gnomesData[indexPath.row]
         }
         self.navigationController?.pushViewController(nextViewController, animated: true)
-//        self.presentViewController(nextViewController, animated:true, completion:nil)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -202,7 +187,6 @@ extension HabitantsViewController: UISearchBarDelegate
 {
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         self.searchBar.showsCancelButton = true
-        //        searchActive = true
         if searchBar.text == "" || searchBar.text == " "
         {
             searchActive = false
@@ -215,14 +199,11 @@ extension HabitantsViewController: UISearchBarDelegate
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchActive = false
         self.searchBar.endEditing(true)
-//        self.searchBar.showsCancelButton = false
         self.collectionHabitants.reloadData()
-        self.cache.removeAllObjects()
     }
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchActive = true;
         self.searchBar.endEditing(true)
-//        self.searchBar.showsCancelButton = false
         self.collectionHabitants.reloadData()
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -241,7 +222,6 @@ extension HabitantsViewController: UISearchBarDelegate
             
         } else {
             searchActive = true;
-            self.cache.removeAllObjects()
         }
         self.collectionHabitants.reloadData()
     }
