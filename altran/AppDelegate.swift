@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  altran
 //
-//  Created by Bamby on 10/7/17.
+//  Created by Juan S. Landy on 10/7/17.
 //
 //
 
@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
+//commit
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         return true

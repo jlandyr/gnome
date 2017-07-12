@@ -7,8 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3000B4311F14FEB700785052 /* ProfessionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3000B4301F14FEB700785052 /* ProfessionsViewController.swift */; };
+		30274CF71F1458460009DD5D /* FriendsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30274CF61F1458460009DD5D /* FriendsCollectionViewCell.swift */; };
+		3082D1721F13860E00EED7BC /* HabitantsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3082D1711F13860E00EED7BC /* HabitantsViewController.swift */; };
+		3082D1741F1387D100EED7BC /* Gnome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3082D1731F1387D100EED7BC /* Gnome.swift */; };
+		3082D1771F138AF200EED7BC /* HabitantsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3082D1761F138AF200EED7BC /* HabitantsCollectionViewCell.swift */; };
+		3082D17F1F1411F200EED7BC /* ParseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3082D17E1F1411F200EED7BC /* ParseData.swift */; };
+		3082D1811F14446900EED7BC /* DetailHabitantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3082D1801F14446900EED7BC /* DetailHabitantViewController.swift */; };
+		3082D1831F1455F100EED7BC /* ProfessionsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3082D1821F1455F100EED7BC /* ProfessionsCollectionViewCell.swift */; };
 		309D88E31F13786F00556F6C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309D88E21F13786F00556F6C /* AppDelegate.swift */; };
-		309D88E51F13786F00556F6C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 309D88E41F13786F00556F6C /* ViewController.swift */; };
 		309D88E81F13786F00556F6C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 309D88E61F13786F00556F6C /* Main.storyboard */; };
 		309D88EB1F13786F00556F6C /* altran.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 309D88E91F13786F00556F6C /* altran.xcdatamodeld */; };
 		309D88ED1F13786F00556F6C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 309D88EC1F13786F00556F6C /* Assets.xcassets */; };
@@ -35,9 +42,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3000B4301F14FEB700785052 /* ProfessionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessionsViewController.swift; sourceTree = "<group>"; };
+		30274CF61F1458460009DD5D /* FriendsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsCollectionViewCell.swift; sourceTree = "<group>"; };
+		3082D1711F13860E00EED7BC /* HabitantsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitantsViewController.swift; sourceTree = "<group>"; };
+		3082D1731F1387D100EED7BC /* Gnome.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gnome.swift; sourceTree = "<group>"; };
+		3082D1761F138AF200EED7BC /* HabitantsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitantsCollectionViewCell.swift; sourceTree = "<group>"; };
+		3082D17E1F1411F200EED7BC /* ParseData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseData.swift; sourceTree = "<group>"; };
+		3082D1801F14446900EED7BC /* DetailHabitantViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailHabitantViewController.swift; sourceTree = "<group>"; };
+		3082D1821F1455F100EED7BC /* ProfessionsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfessionsCollectionViewCell.swift; sourceTree = "<group>"; };
 		309D88DF1F13786F00556F6C /* altran.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = altran.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		309D88E21F13786F00556F6C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		309D88E41F13786F00556F6C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		309D88E71F13786F00556F6C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		309D88EA1F13786F00556F6C /* altran.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = altran.xcdatamodel; sourceTree = "<group>"; };
 		309D88EC1F13786F00556F6C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -76,6 +90,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3082D1751F138AD800EED7BC /* CollectionViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				3082D1761F138AF200EED7BC /* HabitantsCollectionViewCell.swift */,
+				3082D1821F1455F100EED7BC /* ProfessionsCollectionViewCell.swift */,
+				30274CF61F1458460009DD5D /* FriendsCollectionViewCell.swift */,
+			);
+			name = CollectionViewCells;
+			sourceTree = "<group>";
+		};
 		309D88D61F13786F00556F6C = {
 			isa = PBXGroup;
 			children = (
@@ -99,11 +123,10 @@
 		309D88E11F13786F00556F6C /* altran */ = {
 			isa = PBXGroup;
 			children = (
+				309D89161F13788E00556F6C /* Controller */,
+				309D89151F13788A00556F6C /* View */,
+				309D89131F13787C00556F6C /* Model */,
 				309D88E21F13786F00556F6C /* AppDelegate.swift */,
-				309D88E41F13786F00556F6C /* ViewController.swift */,
-				309D88E61F13786F00556F6C /* Main.storyboard */,
-				309D88EC1F13786F00556F6C /* Assets.xcassets */,
-				309D88EE1F13786F00556F6C /* LaunchScreen.storyboard */,
 				309D88F11F13786F00556F6C /* Info.plist */,
 				309D88E91F13786F00556F6C /* altran.xcdatamodeld */,
 			);
@@ -126,6 +149,36 @@
 				309D89071F13786F00556F6C /* Info.plist */,
 			);
 			path = altranUITests;
+			sourceTree = "<group>";
+		};
+		309D89131F13787C00556F6C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3082D1751F138AD800EED7BC /* CollectionViewCells */,
+				3082D1731F1387D100EED7BC /* Gnome.swift */,
+				3082D17E1F1411F200EED7BC /* ParseData.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		309D89151F13788A00556F6C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				309D88E61F13786F00556F6C /* Main.storyboard */,
+				309D88EC1F13786F00556F6C /* Assets.xcassets */,
+				309D88EE1F13786F00556F6C /* LaunchScreen.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		309D89161F13788E00556F6C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3082D1711F13860E00EED7BC /* HabitantsViewController.swift */,
+				3082D1801F14446900EED7BC /* DetailHabitantViewController.swift */,
+				3000B4301F14FEB700785052 /* ProfessionsViewController.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,6 +248,7 @@
 				TargetAttributes = {
 					309D88DE1F13786F00556F6C = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = 644429XKT2;
 						ProvisioningStyle = Automatic;
 					};
 					309D88F51F13786F00556F6C = {
@@ -261,9 +315,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				309D88E51F13786F00556F6C /* ViewController.swift in Sources */,
+				3082D1831F1455F100EED7BC /* ProfessionsCollectionViewCell.swift in Sources */,
+				30274CF71F1458460009DD5D /* FriendsCollectionViewCell.swift in Sources */,
+				3082D1771F138AF200EED7BC /* HabitantsCollectionViewCell.swift in Sources */,
+				3082D1741F1387D100EED7BC /* Gnome.swift in Sources */,
 				309D88E31F13786F00556F6C /* AppDelegate.swift in Sources */,
 				309D88EB1F13786F00556F6C /* altran.xcdatamodeld in Sources */,
+				3000B4311F14FEB700785052 /* ProfessionsViewController.swift in Sources */,
+				3082D17F1F1411F200EED7BC /* ParseData.swift in Sources */,
+				3082D1721F13860E00EED7BC /* HabitantsViewController.swift in Sources */,
+				3082D1811F14446900EED7BC /* DetailHabitantViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,6 +478,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 644429XKT2;
 				INFOPLIST_FILE = altran/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.JuanLandy.altran;
@@ -429,6 +491,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 644429XKT2;
 				INFOPLIST_FILE = altran/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.JuanLandy.altran;
@@ -510,6 +573,7 @@
 				309D890C1F13787000556F6C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		309D890D1F13787000556F6C /* Build configuration list for PBXNativeTarget "altranTests" */ = {
 			isa = XCConfigurationList;
@@ -518,6 +582,7 @@
 				309D890F1F13787000556F6C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		309D89101F13787000556F6C /* Build configuration list for PBXNativeTarget "altranUITests" */ = {
 			isa = XCConfigurationList;
@@ -526,6 +591,7 @@
 				309D89121F13787000556F6C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
