@@ -74,15 +74,6 @@ class HabitantsViewController :UIViewController {
             })
         }
         
-        DispatchQueue.global(qos: .background).async {
-            print("This is run on the background queue")
-            
-            DispatchQueue.main.async {
-                print("This is run on the main queue, after the previous code in outer block")
-            }
-        }
-        
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -146,7 +137,7 @@ extension HabitantsViewController: UICollectionViewDelegate, UICollectionViewDat
                     }
                 })
                 task.resume()
-            } 
+            }
         return cell
     }
     
