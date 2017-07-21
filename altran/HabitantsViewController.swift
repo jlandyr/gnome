@@ -26,6 +26,7 @@ class HabitantsViewController :UIViewController {
     
     let parseData = ParseData()
     
+    
     //MARK: - View Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,9 +96,10 @@ extension HabitantsViewController: UICollectionViewDelegate, UICollectionViewDat
         }
         
     }
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cells", for: indexPath) as! HabitantsCollectionViewCell
         var gnome = Gnome()
+        
         if self.searchActive == true {
             gnome = arrayFiltered[indexPath.row]
         }else{
@@ -117,7 +119,14 @@ extension HabitantsViewController: UICollectionViewDelegate, UICollectionViewDat
             if (self.cache.object(forKey: gnome.thumbnail as AnyObject) != nil){
                 // Use cache
                 print("Cached image used, no need to download it")
-                cell.imageThumbnail?.image = self.cache.object(forKey: gnome.thumbnail as AnyObject) as? UIImage
+                
+                DispatchQueue.global(qos: .background).async {
+                    let theImage = self.cache.object(forKey: gnome.thumbnail as AnyObject) as? UIImage
+                    
+                    DispatchQueue.main.async {
+                        cell.imageThumbnail?.image = theImage
+                    }
+                }
             }else{
                 print("downloading image...")
                 cell.activityIndicator.isHidden = false
@@ -125,12 +134,12 @@ extension HabitantsViewController: UICollectionViewDelegate, UICollectionViewDat
                 let url:URL! = URL(string: profilePicture!)
                 task = session.downloadTask(with: url, completionHandler: { (location, response, error) -> Void in
                     if let data = try? Data(contentsOf: url){
+                        
+                        let img:UIImage! = UIImage(data: data)
                         DispatchQueue.main.async(execute: { () -> Void in
                             
-                            let img:UIImage! = UIImage(data: data)
                             cell.imageThumbnail.image = img
                             self.cache.setObject(img, forKey: gnome.thumbnail as AnyObject)
-                            
                             cell.activityIndicator.isHidden = true
                             
                         })

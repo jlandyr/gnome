@@ -27,7 +27,6 @@ class ParseData: NSObject {
             gnome.proffesions = (obj["professions"] as AnyObject? as? [String]) ?? [""]
             gnome.friends = (obj["friends"] as AnyObject? as? [String]) ?? [""]
             
-            
             arrayGnomes.append(gnome)
         }
         return arrayGnomes
